@@ -16,6 +16,7 @@ class ProductosFactory extends Factory
     {
         return [
             'sku' => $this->faker->numerify('###########'),
+            'nombre' => Str::random(10),
             'id_categoria' => $this->faker->randomNumber(1, true),
             'descripcion' => Str::random(20),
             'precio' => $this->faker->randomNumber(3, true),

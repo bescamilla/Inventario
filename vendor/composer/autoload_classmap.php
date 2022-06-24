@@ -138,6 +138,8 @@ return array(
     'Cron\\MonthField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
     'Database\\Factories\\ProductosFactory' => $baseDir . '/database/factories/ProductosFactory.php',
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
+    'Database\\Factories\\categoriasFactory' => $baseDir . '/database/factories/categoriasFactory.php',
+    'Database\\Factories\\evaluacionesFactory' => $baseDir . '/database/factories/evaluacionesFactory.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
     'Database\\Seeders\\ProductosSeeder' => $baseDir . '/database/seeders/ProductosSeeder.php',
     'DeepCopy\\DeepCopy' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',

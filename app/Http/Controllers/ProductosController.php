@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\categorias;
 use App\Models\Productos;
 use App\Http\Requests\StoreProductosRequest;
 use App\Http\Requests\UpdateProductosRequest;
+use Illuminate\Http\Request;
 
 class ProductosController extends Controller
 {
@@ -15,7 +17,9 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        //
+        $productos = Productos::with('categoria')->with('evaluaciones')->take(10)->get();
+
+        return response()->json($productos);
     }
 
     /**
@@ -25,7 +29,9 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        //
+        $categorias = categorias::all();
+
+        return response()->json($categorias);
     }
 
     /**
@@ -34,9 +40,12 @@ class ProductosController extends Controller
      * @param  \App\Http\Requests\StoreProductosRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProductosRequest $request)
+    public function store(Request $request)
     {
-        //
+        $producto = Productos::create($request->post());
+        return response()->json(
+            ['producto' => $producto]
+        );
     }
 
     /**
@@ -47,7 +56,7 @@ class ProductosController extends Controller
      */
     public function show(Productos $productos)
     {
-        //
+        return response()->json($productos);
     }
 
     /**
@@ -68,9 +77,13 @@ class ProductosController extends Controller
      * @param  \App\Models\Productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductosRequest $request, Productos $productos)
+    public function update(Request $request, Productos $productos)
     {
-        //
+        $productos->fill($request->post())->save();
+
+        return response()->json([
+            'producto' => $productos
+        ]);
     }
 
     /**
@@ -81,6 +94,9 @@ class ProductosController extends Controller
      */
     public function destroy(Productos $productos)
     {
-        //
+        $productos->delete();
+        return response()->json([
+            'message' => 'El producto se elimino correctamente'
+        ]);
     }
 }
