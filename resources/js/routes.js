@@ -3,6 +3,7 @@
 const Crear = () => import('./components/productos/crear.vue');
 const Editar = () => import('./components/productos/editar.vue');
 const Mostrar = () => import('./components/productos/mostrar.vue');
+const Show = () => import('./components/productos/show.vue');
 
 //creamos las rutas
 export const routes = [
@@ -20,5 +21,10 @@ export const routes = [
         name: 'editarProducto',
         path: '/editar/:id ',
         component: Editar
+    },
+    {
+        name: 'showProducto',
+        path: '/show/:id ',
+        component: Show
     }
 ];

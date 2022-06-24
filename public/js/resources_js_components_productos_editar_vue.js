@@ -51,21 +51,68 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "editar-blog",
+  name: "editar-producto",
   data: function data() {
     return {
-      blog: {
-        titulo: "",
-        contenido: ""
-      }
+      producto: {
+        sku: "",
+        nombre: "",
+        id_categoria: "",
+        descripcion: "",
+        precio: "",
+        cantidad: "",
+        estado: ""
+      },
+      categorias: []
     };
   },
   mounted: function mounted() {
-    this.mostrarBlog();
+    this.mostrarProducto();
+    this.getCategorias();
   },
   methods: {
-    mostrarBlog: function mostrarBlog() {
+    mostrarProducto: function mostrarProducto() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -74,12 +121,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.axios.get("/api/blog/".concat(_this.$route.params.id)).then(function (response) {
+                return _this.axios.get("/api/productos/".concat(_this.$route.params.id, "/edit")).then(function (response) {
                   var _response$data = response.data,
-                      titulo = _response$data.titulo,
-                      contenido = _response$data.contenido;
-                  _this.blog.titulo = titulo;
-                  _this.blog.contenido = contenido;
+                      sku = _response$data.sku,
+                      nombre = _response$data.nombre,
+                      id_categoria = _response$data.id_categoria,
+                      descripcion = _response$data.descripcion,
+                      precio = _response$data.precio,
+                      cantidad = _response$data.cantidad,
+                      estado = _response$data.estado;
+                  _this.producto.sku = sku;
+                  _this.producto.nombre = nombre;
+                  _this.producto.id_categoria = id_categoria;
+                  _this.producto.descripcion = descripcion;
+                  _this.producto.precio = precio;
+                  _this.producto.cantidad = cantidad;
+                  _this.producto.estado = estado;
                 })["catch"](function (error) {
                   console.log(error);
                 });
@@ -101,9 +158,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _this2.axios.put("/api/blog/".concat(_this2.$route.params.id), _this2.blog).then(function (response) {
+                return _this2.axios.put("/api/productos/".concat(_this2.$route.params.id), _this2.producto).then(function (response) {
                   _this2.$router.push({
-                    name: "mostrarBlogs"
+                    name: "mostrarProducto"
                   });
                 })["catch"](function (error) {
                   console.log(error);
@@ -115,6 +172,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee2);
+      }))();
+    },
+    getCategorias: function getCategorias() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _this3.axios.get('/api/productos/create').then(function (response) {
+                  _this3.categorias = response.data;
+                })["catch"](function (error) {
+                  console.log(error);
+                  _this3.categorias = [];
+                });
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
       }))();
     }
   }
@@ -226,26 +307,26 @@ var render = function () {
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-12 mb-2" }, [
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", [_vm._v("Título")]),
+                    _c("label", [_vm._v("SKU")]),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.blog.titulo,
-                          expression: "blog.titulo",
+                          value: _vm.producto.sku,
+                          expression: "producto.sku",
                         },
                       ],
                       staticClass: "form-control",
                       attrs: { type: "text" },
-                      domProps: { value: _vm.blog.titulo },
+                      domProps: { value: _vm.producto.sku },
                       on: {
                         input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(_vm.blog, "titulo", $event.target.value)
+                          _vm.$set(_vm.producto, "sku", $event.target.value)
                         },
                       },
                     }),
@@ -253,33 +334,231 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-12 mb-2" }, [
-                  _c("div", { staticClass: "form-floating" }, [
-                    _c("textarea", {
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Nombre")]),
+                    _vm._v(" "),
+                    _c("input", {
                       directives: [
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.blog.contenido,
-                          expression: "blog.contenido",
+                          value: _vm.producto.nombre,
+                          expression: "producto.nombre",
                         },
                       ],
                       staticClass: "form-control",
-                      staticStyle: { height: "100px" },
-                      attrs: { id: "floatingTextarea2" },
-                      domProps: { value: _vm.blog.contenido },
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.producto.nombre },
                       on: {
                         input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(_vm.blog, "contenido", $event.target.value)
+                          _vm.$set(_vm.producto, "nombre", $event.target.value)
                         },
                       },
                     }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 mb-2" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Categoría")]),
                     _vm._v(" "),
-                    _c("label", { attrs: { for: "floatingTextarea2" } }, [
-                      _vm._v("Contenido"),
-                    ]),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.producto.id_categoria,
+                            expression: "producto.id_categoria",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.producto,
+                              "id_categoria",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { value: "", selected: "" } }, [
+                          _vm._v("Selecciona categoria"),
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.categorias, function (categoria) {
+                          return _c(
+                            "option",
+                            { domProps: { value: categoria.id } },
+                            [
+                              _vm._v(
+                                "\n                                        " +
+                                  _vm._s(categoria.categoria) +
+                                  "\n                                    "
+                              ),
+                            ]
+                          )
+                        }),
+                      ],
+                      2
+                    ),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 mb-2" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Descripción")]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.producto.descripcion,
+                          expression: "producto.descripcion",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      staticStyle: { height: "100px" },
+                      domProps: { value: _vm.producto.descripcion },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.producto,
+                            "descripcion",
+                            $event.target.value
+                          )
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 mb-2" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Precio")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.producto.precio,
+                          expression: "producto.precio",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.producto.precio },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.producto, "precio", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 mb-2" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Cantidad")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.producto.cantidad,
+                          expression: "producto.cantidad",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.producto.cantidad },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.producto,
+                            "cantidad",
+                            $event.target.value
+                          )
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 mb-2" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("¿Cuenta con inventario?")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.producto.estado,
+                            expression: "producto.estado",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.producto,
+                              "estado",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { value: "Si" } }, [
+                          _vm._v("Si"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "No" } }, [
+                          _vm._v("No"),
+                        ]),
+                      ]
+                    ),
                   ]),
                 ]),
                 _vm._v(" "),
@@ -298,7 +577,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h4", [_vm._v("Editar Blog")]),
+      _c("h4", [_vm._v("Crear Producto")]),
     ])
   },
   function () {

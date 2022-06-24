@@ -15,14 +15,15 @@
 
                 <div class="row">{{producto.nombre}}</div>
                 <div class="row">{{producto.descripcion}}</div>
+                <div class="row">SKU: {{producto.sku}} - Categoría: {{producto.categoria.categoria}}</div>
                 <div class="row">
                     <div class="col-2" v-for="n in 5">
-                        <i class="fa fa-star checked" v-if="producto.evaluacion > n "></i>
-                        <i class="fa fa-star" v-else-if="producto.evaluacion <= n "></i>
+                        <i class="fa fa-star checked" v-if="n < producto.evaluacion"></i>
+                        <i class="fa fa-star" v-else></i>
                     </div>
                 </div>
 
-                <div class="row" v-if="producto.estado == 'Si'">Con stock</div>
+                <div class="row" v-if="producto.estado == 'Si'"> Con stock - {{producto.cantidad}} unidades</div>
                 <div class="row" v-else-if="producto.estado == 'No'">Sin stock</div>
             </div>
             <div class="col-2">
@@ -31,7 +32,8 @@
                 <div class="row" v-if="producto.estado == 'Si'">Disponible</div>
                 <div class="row" v-else-if="producto.estado == 'No'">No disponible</div>
 
-                <div class="row"><router-link :to='{name:"editarProducto",params:{id:producto.id}}' class="btn btn-info"><i class="fas fa-edit"></i></router-link></div>
+                <div class="row"><router-link :to='{name:"showProducto",params:{id:producto.id}}' class="btn btn-info"><i class="fas fa-eye"></i></router-link></div>
+                <div class="row"><router-link :to='{name:"editarProducto",params:{id:producto.id}}' class="btn btn-success"><i class="fas fa-edit"></i></router-link></div>
                 <div class="row"><a type="button" @click="borrarProducto(producto.id)" class="btn btn-danger"><i class="fas fa-trash"></i></a></div>
             </div>
         </div>

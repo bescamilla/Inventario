@@ -60,6 +60,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "productos",
   data: function data() {
@@ -248,23 +250,34 @@ var render = function () {
               _vm._v(_vm._s(producto.descripcion)),
             ]),
             _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _vm._v(
+                "SKU: " +
+                  _vm._s(producto.sku) +
+                  " - Categoría: " +
+                  _vm._s(producto.categoria.categoria)
+              ),
+            ]),
+            _vm._v(" "),
             _c(
               "div",
               { staticClass: "row" },
               _vm._l(5, function (n) {
                 return _c("div", { staticClass: "col-2" }, [
-                  producto.evaluacion > n
+                  n < producto.evaluacion
                     ? _c("i", { staticClass: "fa fa-star checked" })
-                    : producto.evaluacion <= n
-                    ? _c("i", { staticClass: "fa fa-star" })
-                    : _vm._e(),
+                    : _c("i", { staticClass: "fa fa-star" }),
                 ])
               }),
               0
             ),
             _vm._v(" "),
             producto.estado == "Si"
-              ? _c("div", { staticClass: "row" }, [_vm._v("Con stock")])
+              ? _c("div", { staticClass: "row" }, [
+                  _vm._v(
+                    " Con stock - " + _vm._s(producto.cantidad) + " unidades"
+                  ),
+                ])
               : producto.estado == "No"
               ? _c("div", { staticClass: "row" }, [_vm._v("Sin stock")])
               : _vm._e(),
@@ -289,6 +302,24 @@ var render = function () {
                   "router-link",
                   {
                     staticClass: "btn btn-info",
+                    attrs: {
+                      to: { name: "showProducto", params: { id: producto.id } },
+                    },
+                  },
+                  [_c("i", { staticClass: "fas fa-eye" })]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-success",
                     attrs: {
                       to: {
                         name: "editarProducto",

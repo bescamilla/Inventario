@@ -65,9 +65,11 @@ class ProductosController extends Controller
      * @param  \App\Models\Productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Productos $productos)
+    public function edit($id)
     {
-        //
+        $producto = Productos::find($id);
+
+        return response()->json($producto);
     }
 
     /**
@@ -77,12 +79,14 @@ class ProductosController extends Controller
      * @param  \App\Models\Productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Productos $productos)
+    public function update(Request $request, $id)
     {
-        $productos->fill($request->post())->save();
+        $producto = Productos::find($id);
+
+        $producto->fill($request->post())->save();
 
         return response()->json([
-            'producto' => $productos
+            'producto' => $producto
         ]);
     }
 
@@ -92,9 +96,10 @@ class ProductosController extends Controller
      * @param  \App\Models\Productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Productos $productos)
+    public function destroy($id)
     {
-        $productos->delete();
+        $producto = Productos::find($id);
+        $producto->delete();
         return response()->json([
             'message' => 'El producto se elimino correctamente'
         ]);

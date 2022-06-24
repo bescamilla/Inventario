@@ -11,8 +11,11 @@
     <link rel="stylesheet" href="{{mix('css/app.css')}}">
     <style>
         .row{
-            padding: 15px;
+            padding: 10px;
         }
+        .checked {
+             color: orange;
+         }
     </style>
 </head>
 <body>

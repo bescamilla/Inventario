@@ -2193,6 +2193,10 @@ var Editar = function Editar() {
 
 var Mostrar = function Mostrar() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_productos_mostrar_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/productos/mostrar.vue */ "./resources/js/components/productos/mostrar.vue"));
+};
+
+var Show = function Show() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_productos_show_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/productos/show.vue */ "./resources/js/components/productos/show.vue"));
 }; //creamos las rutas
 
 
@@ -2208,6 +2212,10 @@ var routes = [{
   name: 'editarProducto',
   path: '/editar/:id ',
   component: Editar
+}, {
+  name: 'showProducto',
+  path: '/show/:id ',
+  component: Show
 }];
 
 /***/ }),
@@ -35272,7 +35280,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_productos_crear_vue":1,"resources_js_components_productos_editar_vue":1,"resources_js_components_productos_mostrar_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_productos_crear_vue":1,"resources_js_components_productos_editar_vue":1,"resources_js_components_productos_mostrar_vue":1,"resources_js_components_productos_show_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
