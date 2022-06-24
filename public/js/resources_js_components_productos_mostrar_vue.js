@@ -83,6 +83,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.next = 2;
                 return _this.axios.get('/api/productos').then(function (response) {
+                  // for para sacar el promedio de las evaluaciones
                   for (var i = 0; i < response.data.length; i++) {
                     var suma = 0;
 
@@ -100,7 +101,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
 
                   _this.productos = response.data;
-                  console.log(response.data);
                 })["catch"](function (error) {
                   console.log(error);
                   _this.productos = [];
@@ -263,7 +263,7 @@ var render = function () {
               "div",
               { staticClass: "row" },
               _vm._l(5, function (n) {
-                return _c("div", { staticClass: "col-2" }, [
+                return _c("div", { staticClass: "col-1" }, [
                   n < producto.evaluacion
                     ? _c("i", { staticClass: "fa fa-star checked" })
                     : _c("i", { staticClass: "fa fa-star" }),

@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
                     <!-- llamamos al logo de Vue -->
-                    <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fseeklogo.com%2Fimages%2FL%2Flaravel-framework-logo-C10176EC8C-seeklogo.com.png&imgrefurl=https%3A%2F%2Fseeklogo.com%2Ffree-vector-logos%2Flaravel&tbnid=3baoEfw-6blhIM&vet=12ahUKEwiA-5j20cb4AhWSA80KHUZaCtQQMygCegUIARC9AQ..i&docid=VX95y8IUUCm_iM&w=300&h=260&q=laravel%20logo&ved=2ahUKEwiA-5j20cb4AhWSA80KHUZaCtQQMygCegUIARC9AQ" alt="" width="30" height="24">
+                    <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fmedia-exp1.licdn.com%2Fdms%2Fimage%2FC560BAQEEBIF-06UXJg%2Fcompany-logo_200_200%2F0%2F1569260297331%3Fe%3D2147483647%26v%3Dbeta%26t%3DCVdhhjaHufDMDv040K1nIPsBW9WbFGURuTuv1UxWsX0&imgrefurl=https%3A%2F%2Fmx.linkedin.com%2Fcompany%2Fdropstudious&tbnid=5n3YfS_jjeSdBM&vet=12ahUKEwjcqsX7mMf4AhWFlGoFHTACCzgQMygAegQIARBo..i&docid=t4ig9A5HgIeYvM&w=200&h=200&q=dropstudio&ved=2ahUKEwjcqsX7mMf4AhWFlGoFHTACCzgQMygAegQIARBo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

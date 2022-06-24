@@ -17,7 +17,7 @@
                 <div class="row">{{producto.descripcion}}</div>
                 <div class="row">SKU: {{producto.sku}} - Categoría: {{producto.categoria.categoria}}</div>
                 <div class="row">
-                    <div class="col-2" v-for="n in 5">
+                    <div class="col-1" v-for="n in 5">
                         <i class="fa fa-star checked" v-if="n < producto.evaluacion"></i>
                         <i class="fa fa-star" v-else></i>
                     </div>
@@ -56,6 +56,7 @@
             async mostrarProductos(){
                 await this.axios.get('/api/productos').then(response=>{
 
+                    // for para sacar el promedio de las evaluaciones
                     for(var i = 0; i < response.data.length; i++){
                         var suma = 0;
                         for(var j = 0; j < response.data[i].evaluaciones.length; j++){
@@ -70,7 +71,6 @@
                     }
 
                     this.productos = response.data;
-                    console.log(response.data);
                 }).catch(error=>{
                     console.log(error)
                     this.productos = []

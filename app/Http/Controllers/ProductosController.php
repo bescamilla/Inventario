@@ -37,7 +37,7 @@ class ProductosController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreProductosRequest  $request
+     * @param  \App\Http\Requests\StoreProductosRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -51,7 +51,7 @@ class ProductosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Productos  $productos
+     * @param  \App\Models\Productos $productos
      * @return \Illuminate\Http\Response
      */
     public function show(Productos $productos)
@@ -62,12 +62,25 @@ class ProductosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Productos  $productos
+     * @param  \App\Models\Productos $productos
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $producto = Productos::find($id);
+        $producto = Productos::with('evaluaciones')->with('categoria')->where('id', $id)->first();
+
+        $suma = 0; $producto->categorias = $producto->categoria->categoria;
+        foreach ($producto->evaluaciones as $evaluaciones) {
+            $suma += $evaluaciones->evaluacion;
+        }
+
+        $evalua = $suma / sizeof($producto->evaluaciones);
+
+        if ($evalua > 0) {
+            $producto->evaluacion = $evalua;
+        }else{
+            $producto->evaluacion = 0;
+        }
 
         return response()->json($producto);
     }
@@ -75,8 +88,8 @@ class ProductosController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateProductosRequest  $request
-     * @param  \App\Models\Productos  $productos
+     * @param  \App\Http\Requests\UpdateProductosRequest $request
+     * @param  \App\Models\Productos $productos
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -93,7 +106,7 @@ class ProductosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Productos  $productos
+     * @param  \App\Models\Productos $productos
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
