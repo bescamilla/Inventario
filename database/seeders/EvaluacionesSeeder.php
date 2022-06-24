@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Productos;
+use App\Models\evaluaciones;
 use Illuminate\Database\Seeder;
 
-class ProductosSeeder extends Seeder
+class evaluacionesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class ProductosSeeder extends Seeder
      */
     public function run()
     {
-        Productos::factory(200)->create();
+        evaluaciones::factory(200)->create();
     }
 }
