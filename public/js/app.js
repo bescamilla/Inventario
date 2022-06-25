@@ -2201,6 +2201,10 @@ var Show = function Show() {
 
 var Calificar = function Calificar() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_productos_calificar_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/productos/calificar.vue */ "./resources/js/components/productos/calificar.vue"));
+};
+
+var Inventario = function Inventario() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_productos_inventario_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/productos/inventario.vue */ "./resources/js/components/productos/inventario.vue"));
 }; //creamos las rutas
 
 
@@ -2224,6 +2228,10 @@ var routes = [{
   name: 'calificarProducto',
   path: '/calificar/:id ',
   component: Calificar
+}, {
+  name: 'inventarioProducto',
+  path: '/inventario/:id ',
+  component: Inventario
 }];
 
 /***/ }),
@@ -35285,7 +35293,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_productos_crear_vue":1,"resources_js_components_productos_editar_vue":1,"resources_js_components_productos_mostrar_vue":1,"resources_js_components_productos_show_vue":1,"resources_js_components_productos_calificar_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_productos_crear_vue":1,"resources_js_components_productos_editar_vue":1,"resources_js_components_productos_mostrar_vue":1,"resources_js_components_productos_show_vue":1,"resources_js_components_productos_calificar_vue":1,"resources_js_components_productos_inventario_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

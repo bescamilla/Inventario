@@ -47,7 +47,7 @@
                     </router-link>
                 </div>
                 <div class="row">
-                    <router-link :to='{name:"editarProducto",params:{id:producto.id}}' class="btn btn-success"><i
+                    <router-link :to='{name:"inventarioProducto",params:{id:producto.id}}' class="btn btn-success"><i
                             class="fas fa-warehouse"></i> Inventario
                     </router-link>
                 </div>

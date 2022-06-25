@@ -5,6 +5,7 @@ const Editar = () => import('./components/productos/editar.vue');
 const Mostrar = () => import('./components/productos/mostrar.vue');
 const Show = () => import('./components/productos/show.vue');
 const Calificar = () => import('./components/productos/calificar.vue');
+const Inventario = () => import('./components/productos/inventario.vue');
 
 //creamos las rutas
 export const routes = [
@@ -32,5 +33,10 @@ export const routes = [
         name: 'calificarProducto',
         path: '/calificar/:id ',
         component: Calificar
+    },
+    {
+        name: 'inventarioProducto',
+        path: '/inventario/:id ',
+        component: Inventario
     }
 ];
