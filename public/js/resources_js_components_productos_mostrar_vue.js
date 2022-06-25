@@ -269,7 +269,14 @@ var render = function () {
       _vm._v(" "),
       _vm._l(_vm.productos, function (producto) {
         return _c("div", { key: producto.id, staticClass: "row" }, [
-          _vm._m(0, true),
+          _c("div", { staticClass: "col-2" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("img", {
+                staticStyle: { height: "150px" },
+                attrs: { src: "/img/thumbnails/" + producto.imagen },
+              }),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-8" }, [
             _c("div", { staticClass: "row" }, [
@@ -361,7 +368,7 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "row" },
+                { staticClass: "row row-btn" },
                 [
                   _c(
                     "router-link",
@@ -385,7 +392,7 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "row" },
+                { staticClass: "row row-btn" },
                 [
                   _c(
                     "router-link",
@@ -409,7 +416,7 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "row" },
+                { staticClass: "row row-btn" },
                 [
                   _c(
                     "router-link",
@@ -431,7 +438,7 @@ var render = function () {
                 1
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "row row-btn" }, [
                 _c(
                   "a",
                   {
@@ -457,23 +464,7 @@ var render = function () {
     2
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-2" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("img", {
-          staticStyle: { height: "150px" },
-          attrs: {
-            src: "https://m.media-amazon.com/images/I/71luYyAPVTL._AC_SL1500_.jpg",
-          },
-        }),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

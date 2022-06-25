@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\categorias;
 use App\Models\evaluaciones;
 use App\Models\Productos;
-use App\Http\Requests\StoreProductosRequest;
-use App\Http\Requests\UpdateProductosRequest;
 use Illuminate\Http\Request;
 
 class ProductosController extends Controller
@@ -43,7 +41,18 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-        $producto = Productos::create($request->post());
+        if($request->hasFile('imagen')) {
+            $imagen = $request->file('imagen');
+            $ruta = public_path('img/thumbnails/');
+            $producto = Productos::create($request->post());
+            $nombre_imagen = 'thumbnail'.$producto->id.'.jpg';
+            copy($imagen->getRealPath(), $ruta . $nombre_imagen);
+            $producto->imagen = $nombre_imagen;
+            $producto->save();
+        }else{
+            $producto = Productos::create($request->post());
+        }
+
         return response()->json(
             ['producto' => $producto]
         );
@@ -96,7 +105,18 @@ class ProductosController extends Controller
     {
         $producto = Productos::find($id);
 
-        $producto->fill($request->post())->save();
+        if($request->hasFile('imagen')) {
+            $imagen = $request->file('imagen');
+            $ruta = public_path('img/thumbnails/');
+            $producto->fill($request->post())->save();
+            $nombre_imagen = 'thumbnail'.$producto->id.'.jpg';
+            copy($imagen->getRealPath(), $ruta . $nombre_imagen);
+            $producto->imagen = $nombre_imagen;
+            $producto->save();
+        }else{
+            $producto->fill($request->post())->save();
+        }
+
 
         return response()->json([
             'producto' => $producto
@@ -121,7 +141,7 @@ class ProductosController extends Controller
         ]);
     }
 
-
+    /* se crea metodo para evaluar los productos */
     public function calificar(Request $request, $id)
     {
         $evaluacion = new evaluaciones();

@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('productos', \App\Http\Controllers\ProductosController::class);
 Route::put('productos/calificar/{id}', [\App\Http\Controllers\ProductosController::class, 'calificar']);
+Route::post('productos/update/{id}', [\App\Http\Controllers\ProductosController::class, 'update']);

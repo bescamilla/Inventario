@@ -82,6 +82,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "editar-producto",
   data: function data() {
@@ -93,7 +99,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         descripcion: "",
         precio: "",
         cantidad: "",
-        estado: ""
+        estado: "",
+        imagen: null
       },
       categorias: []
     };
@@ -144,12 +151,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var productos, key;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return _this2.axios.put("/api/productos/".concat(_this2.$route.params.id), _this2.producto).then(function (response) {
+                // se crea formdata para subir imagenes
+                productos = new FormData();
+
+                for (key in _this2.producto) {
+                  productos.append(key, _this2.producto[key]);
+                }
+
+                _context2.next = 4;
+                return _this2.axios.post("/api/productos/update/".concat(_this2.$route.params.id), productos).then(function (response) {
                   _this2.$router.push({
                     name: "mostrarProducto"
                   });
@@ -157,7 +172,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(error);
                 });
 
-              case 2:
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -188,6 +203,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee3);
       }))();
+    },
+    selectFile: function selectFile(event) {
+      // metodo para guardar la imagen en el array
+      this.producto.imagen = event.target.files[0];
     }
   }
 });
@@ -500,6 +519,18 @@ var render = function () {
                           )
                         },
                       },
+                    }),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 mb-2" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Imagen")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: { type: "file", accept: "image/*" },
+                      on: { change: _vm.selectFile },
                     }),
                   ]),
                 ]),

@@ -50,6 +50,12 @@
                                     <input type="text" class="form-control" v-model="producto.cantidad">
                                 </div>
                             </div>
+                            <div class="col-12 mb-2">
+                                <div class="form-group">
+                                    <label>Imagen</label>
+                                    <input type="file" accept="image/*" class="form-control" @change="selectFile">
+                                </div>
+                            </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
@@ -74,7 +80,8 @@
                     descripcion: "",
                     precio: "",
                     cantidad: "",
-                    estado: ""
+                    estado: "",
+                    imagen: null
                 },
                 categorias: []
             }
@@ -85,6 +92,7 @@
         },
         methods: {
             async mostrarProducto() {
+                //metodo para obtener los productos
                 await this.axios.get(`/api/productos/${this.$route.params.id}/edit`).then(response => {
                     const { sku, nombre, id_categoria, descripcion, precio, cantidad, estado } = response.data;
                     this.producto.sku = sku;
@@ -99,19 +107,31 @@
                 })
             },
             async actualizar() {
-                await this.axios.put(`/api/productos/${this.$route.params.id}`, this.producto).then(response => {
+
+                // se crea formdata para subir imagenes
+                let productos = new FormData();
+                for(let key in this.producto){
+                    productos.append(key, this.producto[key]);
+                }
+
+                await this.axios.post(`/api/productos/update/${this.$route.params.id}`, productos).then(response => {
                     this.$router.push({name: "mostrarProducto"})
                 }).catch(error => {
                     console.log(error)
                 })
             },
             async getCategorias() {
+                // metodo para obtener categoria
                 await this.axios.get('/api/productos/create').then(response => {
                     this.categorias = response.data
                 }).catch(error => {
                     console.log(error)
                     this.categorias = []
                 })
+            },
+            selectFile(event){
+                // metodo para guardar la imagen en el array
+                this.producto.imagen = event.target.files[0];
             }
         }
     }

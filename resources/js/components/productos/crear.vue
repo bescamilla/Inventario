@@ -58,6 +58,13 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="col-12 mb-2">
+                                <div class="form-group">
+                                    <label>Imagen</label>
+                                    <input type="file" accept="image/*" class="form-control" @change="selectFile">
+                                </div>
+                            </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
@@ -81,7 +88,8 @@
                     descripcion: "",
                     precio: "",
                     cantidad: "",
-                    estado: ""
+                    estado: "",
+                    imagen: null
                 },
                 categorias: []
             }
@@ -91,7 +99,13 @@
         },
         methods: {
             async crear() {
-                await this.axios.post('api/productos', this.producto).then(response => {
+                // se crea formdata para subir imagenes
+                let productos = new FormData();
+                for(let key in this.producto){
+                    productos.append(key, this.producto[key]);
+                }
+
+                await this.axios.post('api/productos', productos).then(response => {
                     this.$router.push({name: "mostrarProducto"})
                 }).catch(error => {
                     console.log(error)
@@ -101,9 +115,13 @@
                 await this.axios.get('/api/productos/create').then(response=>{
                     this.categorias = response.data
                 }).catch(error=>{
-                    console.log(error)
+                    console.log(error);
                     this.categorias = []
                 })
+            },
+            selectFile(event){
+                // metodo para agregar imagen al array
+                this.producto.imagen = event.target.files[0];
             }
 
 

@@ -22,7 +22,8 @@ class ProductosFactory extends Factory
             'precio' => $this->faker->randomNumber(3, true),
             'cantidad' => $this->faker->randomNumber(2, true),
             'estado' => 'Si',
-            'eliminado' => 'No'
+            'eliminado' => 'No',
+            'imagen' => null
         ];
     }
 }

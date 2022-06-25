@@ -23,6 +23,7 @@ class CreateProductosTable extends Migration
             $table->integer('cantidad')->nullable();
             $table->enum('estado', ['Si', 'No'])->default('Si');
             $table->enum('eliminado', ['Si', 'No'])->default('No');
+            $table->string('imagen')->nullable();
 
             $table->timestamps();
         });

@@ -10,7 +10,7 @@
         <div class="row" v-for="producto in productos" :key="producto.id">
             <div class="col-2">
                 <div class="row">
-                    <img src="https://m.media-amazon.com/images/I/71luYyAPVTL._AC_SL1500_.jpg"
+                    <img v-bind:src="'/img/thumbnails/'+producto.imagen"
                          style="height: 150px">
                 </div>
             </div>
@@ -48,22 +48,22 @@
                 <div class="row" style="color: green" v-if="producto.estado == 'Si'">Disponible</div>
                 <div class="row" style="color: red" v-else-if="producto.estado == 'No'">No disponible</div>
 
-                <div class="row">
+                <div class="row row-btn">
                     <router-link :to='{name:"showProducto",params:{id:producto.id}}' class="btn btn-info"><i
                             class="fas fa-eye"></i> Mostrar
                     </router-link>
                 </div>
-                <div class="row">
+                <div class="row row-btn">
                     <router-link :to='{name:"editarProducto",params:{id:producto.id}}' class="btn btn-success"><i
                             class="fas fa-edit"></i> Editar
                     </router-link>
                 </div>
-                <div class="row">
+                <div class="row row-btn">
                     <router-link :to='{name:"inventarioProducto",params:{id:producto.id}}' class="btn btn-success"><i
                             class="fas fa-warehouse"></i> Inventario
                     </router-link>
                 </div>
-                <div class="row"><a type="button" @click="borrarProducto(producto.id)" class="btn btn-danger"><i
+                <div class="row row-btn"><a type="button" @click="borrarProducto(producto.id)" class="btn btn-danger"><i
                         class="fas fa-trash"></i> Eliminar</a></div>
             </div>
         </div>

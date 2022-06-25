@@ -2090,7 +2090,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
@@ -19765,9 +19764,13 @@ var render = function () {
       { staticClass: "navbar navbar-expand-lg navbar-dark bg-primary" },
       [
         _c("div", { staticClass: "container-fluid" }, [
-          _vm._m(0),
+          _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
+            _c("img", {
+              attrs: { src: "img/1569260297331.jpg", height: "50px" },
+            }),
+          ]),
           _vm._v(" "),
-          _vm._m(1),
+          _vm._m(0),
           _vm._v(" "),
           _c(
             "div",
@@ -19807,18 +19810,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-      _c("img", {
-        attrs: {
-          src: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fmedia-exp1.licdn.com%2Fdms%2Fimage%2FC560BAQEEBIF-06UXJg%2Fcompany-logo_200_200%2F0%2F1569260297331%3Fe%3D2147483647%26v%3Dbeta%26t%3DCVdhhjaHufDMDv040K1nIPsBW9WbFGURuTuv1UxWsX0&imgrefurl=https%3A%2F%2Fmx.linkedin.com%2Fcompany%2Fdropstudious&tbnid=5n3YfS_jjeSdBM&vet=12ahUKEwjcqsX7mMf4AhWFlGoFHTACCzgQMygAegQIARBo..i&docid=t4ig9A5HgIeYvM&w=200&h=200&q=dropstudio&ved=2ahUKEwjcqsX7mMf4AhWFlGoFHTACCzgQMygAegQIARBo",
-        },
-      }),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

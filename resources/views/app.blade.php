@@ -14,6 +14,11 @@
             padding: 10px;
             margin-bottom: 15px;
         }
+
+        .row-btn{
+            margin-bottom: 5px;
+            padding: 3px;
+        }
         .checked {
              color: orange;
          }
