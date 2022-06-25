@@ -92,11 +92,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "productos",
   data: function data() {
     return {
-      productos: []
+      productos: [],
+      elementosPagina: 10,
+      datosPaginados: [],
+      paginaActual: 1
     };
   },
   mounted: function mounted() {
@@ -131,6 +142,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
 
                   _this.productos = response.data;
+
+                  _this.getDatosPagina(1);
                 })["catch"](function (error) {
                   console.log(error);
                   _this.productos = [];
@@ -154,6 +167,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           console.log(error);
         });
       }
+    },
+    totalPaginas: function totalPaginas() {
+      return Math.ceil(this.productos.length / this.elementosPagina);
+    },
+    getDatosPagina: function getDatosPagina(nPagina) {
+      this.paginaActual = nPagina;
+      this.datosPaginados = [];
+      var ini = nPagina * this.elementosPagina - this.elementosPagina;
+      var fin = nPagina * this.elementosPagina;
+      this.datosPaginados = this.productos.slice(ini, fin);
+    },
+    getPaginaAnterior: function getPaginaAnterior() {
+      if (this.paginaActual > 1) {
+        this.paginaActual--;
+      }
+
+      this.getDatosPagina(this.paginaActual);
+    },
+    getPaginaSiguiente: function getPaginaSiguiente() {
+      if (this.paginaActual < this.totalPaginas()) {
+        this.paginaActual++;
+      }
+
+      this.getDatosPagina(this.paginaActual);
+    },
+    Activo: function Activo(nPagina) {
+      return nPagina == this.paginaActual ? 'active' : '';
     }
   }
 });
@@ -267,7 +307,7 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _vm._l(_vm.productos, function (producto) {
+      _vm._l(_vm.datosPaginados, function (producto) {
         return _c("div", { key: producto.id, staticClass: "row" }, [
           _c("div", { staticClass: "col-2" }, [
             _c("div", { staticClass: "row" }, [
@@ -325,7 +365,9 @@ var render = function () {
                   [
                     _c("p", [
                       _vm._v(
-                        "Con stock - " + _vm._s(producto.cantidad) + " unidades"
+                        "Con stock -\n                " +
+                          _vm._s(producto.cantidad) +
+                          " unidades"
                       ),
                     ]),
                   ]
@@ -460,6 +502,69 @@ var render = function () {
           ),
         ])
       }),
+      _vm._v(" "),
+      _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
+        _c(
+          "ul",
+          { staticClass: "pagination" },
+          [
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                on: {
+                  click: function ($event) {
+                    return _vm.getPaginaAnterior()
+                  },
+                },
+              },
+              [
+                _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                  _vm._v("Anterior"),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.totalPaginas(), function (pagina) {
+              return _c(
+                "li",
+                {
+                  staticClass: "page-item",
+                  class: _vm.Activo(pagina),
+                  on: {
+                    click: function ($event) {
+                      return _vm.getDatosPagina(pagina)
+                    },
+                  },
+                },
+                [
+                  _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                    _vm._v(_vm._s(pagina)),
+                  ]),
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                on: {
+                  click: function ($event) {
+                    return _vm.getPaginaSiguiente()
+                  },
+                },
+              },
+              [
+                _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                  _vm._v("Siguiente"),
+                ]),
+              ]
+            ),
+          ],
+          2
+        ),
+      ]),
     ],
     2
   )

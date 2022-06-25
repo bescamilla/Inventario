@@ -7,7 +7,7 @@
             </router-link>
         </div>
 
-        <div class="row" v-for="producto in productos" :key="producto.id">
+        <div class="row" v-for="producto in datosPaginados" :key="producto.id">
             <div class="col-2">
                 <div class="row">
                     <img v-bind:src="'/img/thumbnails/'+producto.imagen"
@@ -37,7 +37,8 @@
                     </div>
                 </div>
 
-                <div class="row" style="color: green" v-if="producto.estado == 'Si'"> <p>Con stock - {{producto.cantidad}} unidades</p></div>
+                <div class="row" style="color: green" v-if="producto.estado == 'Si'"><p>Con stock -
+                    {{producto.cantidad}} unidades</p></div>
                 <div class="row" style="color: red" v-else-if="producto.estado == 'No'"><p>Sin stock</p></div>
             </div>
             <div class="col-2" style="border-left: 1px solid #cbcbcb !important;">
@@ -68,6 +69,13 @@
             </div>
         </div>
 
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item" v-on:click="getPaginaAnterior()"><a class="page-link" href="#">Anterior</a></li>
+                <li class="page-item" v-for="pagina in totalPaginas()" v-on:click="getDatosPagina(pagina)" v-bind:class="Activo(pagina)"><a class="page-link" href="#">{{pagina}}</a></li>
+                <li class="page-item" v-on:click="getPaginaSiguiente()"><a class="page-link" href="#">Siguiente</a></li>
+            </ul>
+        </nav>
     </div>
 </template>
 
@@ -75,12 +83,16 @@
     export default {
         name: "productos",
         data() {
+
             return {
-                productos: []
+                productos: [],
+                elementosPagina: 10,
+                datosPaginados: [],
+                paginaActual: 1
             }
         },
         mounted() {
-            this.mostrarProductos()
+            this.mostrarProductos();
         },
         methods: {
             async mostrarProductos() {
@@ -101,8 +113,10 @@
                     }
 
                     this.productos = response.data;
+
+                    this.getDatosPagina(1);
                 }).catch(error => {
-                    console.log(error)
+                    console.log(error);
                     this.productos = []
                 })
             },
@@ -114,6 +128,31 @@
                         console.log(error)
                     })
                 }
+            },
+            totalPaginas(){
+                return Math.ceil(this.productos.length / this.elementosPagina);
+            },
+            getDatosPagina(nPagina){
+                this.paginaActual = nPagina;
+                this.datosPaginados = [];
+                let ini = (nPagina * this.elementosPagina) - this.elementosPagina;
+                let fin = (nPagina * this.elementosPagina);
+                this.datosPaginados = this.productos.slice(ini, fin);
+            },
+            getPaginaAnterior(){
+                if(this.paginaActual > 1){
+                    this.paginaActual--;
+                }
+                this.getDatosPagina(this.paginaActual);
+            },
+            getPaginaSiguiente(){
+                if(this.paginaActual < this.totalPaginas()){
+                    this.paginaActual++;
+                }
+                this.getDatosPagina(this.paginaActual);
+            },
+            Activo(nPagina) {
+                return nPagina == this.paginaActual ? 'active' : '';
             }
         }
     }
