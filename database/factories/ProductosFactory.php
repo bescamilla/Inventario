@@ -23,7 +23,7 @@ class ProductosFactory extends Factory
             'cantidad' => $this->faker->randomNumber(2, true),
             'estado' => 'Si',
             'eliminado' => 'No',
-            'imagen' => null
+            'imagen' => 'apple_watch.jpg'
         ];
     }
 }
