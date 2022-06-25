@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\categorias;
+use App\Models\evaluaciones;
 use App\Models\Productos;
 use App\Http\Requests\StoreProductosRequest;
 use App\Http\Requests\UpdateProductosRequest;
@@ -69,18 +70,17 @@ class ProductosController extends Controller
     {
         $producto = Productos::with('evaluaciones')->with('categoria')->where('id', $id)->first();
 
-        $suma = 0; $producto->categorias = $producto->categoria->categoria;
+        $suma = 0;
+        $producto->categorias = $producto->categoria->categoria;
+        $evalua = 0;
         foreach ($producto->evaluaciones as $evaluaciones) {
             $suma += $evaluaciones->evaluacion;
         }
 
-        $evalua = $suma / sizeof($producto->evaluaciones);
+        if (sizeof($producto->evaluaciones))
+            $evalua = $suma / sizeof($producto->evaluaciones);
 
-        if ($evalua > 0) {
-            $producto->evaluacion = $evalua;
-        }else{
-            $producto->evaluacion = 0;
-        }
+        $producto->evaluacion = $evalua;
 
         return response()->json($producto);
     }
@@ -115,6 +115,20 @@ class ProductosController extends Controller
         $producto->delete();
         return response()->json([
             'message' => 'El producto se elimino correctamente'
+        ]);
+    }
+
+
+    public function calificar(Request $request, $id)
+    {
+        $evaluacion = new evaluaciones();
+        $evaluacion->id_producto = $id;
+        $evaluacion->evaluacion = $request->get('evaluacion');
+
+        $evaluacion->save();
+
+        return response()->json([
+            'message' => 'success'
         ]);
     }
 }

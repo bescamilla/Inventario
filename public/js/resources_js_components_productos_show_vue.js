@@ -59,12 +59,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "show-producto",
   data: function data() {
     return {
       producto: {
+        id: "",
         sku: "",
         nombre: "",
         categoria: "",
@@ -73,7 +73,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         cantidad: "",
         estado: "",
         evaluacion: 0,
-        ratio: 5
+        ratio: 0
       }
     };
   },
@@ -94,13 +94,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   var _response$data = response.data,
                       sku = _response$data.sku,
                       nombre = _response$data.nombre,
-                      id_categoria = _response$data.id_categoria,
+                      id = _response$data.id,
                       descripcion = _response$data.descripcion,
                       precio = _response$data.precio,
                       cantidad = _response$data.cantidad,
                       estado = _response$data.estado,
                       evaluacion = _response$data.evaluacion,
                       categorias = _response$data.categorias;
+                  _this.producto.id = id;
                   _this.producto.sku = sku;
                   _this.producto.nombre = nombre;
                   _this.producto.descripcion = descripcion;
@@ -108,7 +109,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.producto.cantidad = cantidad;
                   _this.producto.estado = estado;
                   _this.producto.evaluacion = parseInt(evaluacion);
-                  _this.producto.ratio = 5 - evaluacion;
+                  _this.producto.ratio = 5 - parseInt(evaluacion);
                   _this.producto.categoria = categorias;
                 })["catch"](function (error) {
                   console.log(error);
@@ -260,7 +261,26 @@ var render = function () {
           _vm._v(_vm._s(_vm.producto.descripcion)),
         ]),
         _vm._v(" "),
-        _vm._m(1),
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-success",
+                attrs: {
+                  to: {
+                    name: "calificarProducto",
+                    params: { id: _vm.producto.id },
+                  },
+                },
+              },
+              [_c("i", { staticClass: "fas fa-heart" }), _vm._v(" Calificar")]
+            ),
+          ],
+          1
+        ),
       ]),
     ]),
   ])
@@ -279,24 +299,6 @@ var staticRenderFns = [
           },
         }),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c(
-        "button",
-        {
-          staticClass: "form-control",
-          attrs: { type: "button", id: "calificar" },
-        },
-        [
-          _c("i", { staticClass: "fa fa-heart" }),
-          _vm._v(" Calificar\n                "),
-        ]
-      ),
     ])
   },
 ]

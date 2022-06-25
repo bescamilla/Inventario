@@ -29,8 +29,7 @@
                 <div class="row" v-else-if="producto.estado == 'No'">No disponible - Sin stock</div>
                 <div class="row">{{producto.descripcion}}</div>
                 <div class="row">
-                    <button type="button" class="form-control" id="calificar"><i class="fa fa-heart"></i> Calificar
-                    </button>
+                    <router-link :to='{name:"calificarProducto",params:{id:producto.id}}' class="btn btn-success"><i class="fas fa-heart"></i> Calificar</router-link>
                 </div>
 
             </div>
@@ -45,6 +44,7 @@
         data() {
             return {
                 producto: {
+                    id: "",
                     sku: "",
                     nombre: "",
                     categoria: "",
@@ -53,7 +53,7 @@
                     cantidad: "",
                     estado: "",
                     evaluacion: 0,
-                    ratio: 5
+                    ratio: 0
                 }
             }
         },
@@ -63,7 +63,8 @@
         methods: {
             async mostrarProductos() {
                 await this.axios.get(`/api/productos/${this.$route.params.id}/edit`).then(response => {
-                    const {sku, nombre, id_categoria, descripcion, precio, cantidad, estado, evaluacion, categorias} = response.data;
+                    const {sku, nombre, id, descripcion, precio, cantidad, estado, evaluacion, categorias} = response.data;
+                    this.producto.id = id;
                     this.producto.sku = sku;
                     this.producto.nombre = nombre;
                     this.producto.descripcion = descripcion;
@@ -71,7 +72,7 @@
                     this.producto.cantidad = cantidad;
                     this.producto.estado = estado;
                     this.producto.evaluacion = parseInt(evaluacion);
-                    this.producto.ratio = 5 - evaluacion ;
+                    this.producto.ratio = 5 - parseInt(evaluacion);
                     this.producto.categoria = categorias ;
 
                 }).catch(error => {
