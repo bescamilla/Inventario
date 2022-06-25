@@ -16,7 +16,7 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        $productos = Productos::with('categoria')->with('evaluaciones')->where('eliminado', 'No')->take(10)->get();
+        $productos = Productos::with('categoria')->with('evaluaciones')->where('eliminado', 'No')->get();
 
         return response()->json($productos);
     }
