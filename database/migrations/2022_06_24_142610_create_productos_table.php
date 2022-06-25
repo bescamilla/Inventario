@@ -21,7 +21,8 @@ class CreateProductosTable extends Migration
             $table->string('descripcion')->nullable();
             $table->double('precio',10,2);
             $table->integer('cantidad')->nullable();
-            $table->enum('estado', ['Si', 'No']);
+            $table->enum('estado', ['Si', 'No'])->default('Si');
+            $table->enum('eliminado', ['Si', 'No'])->default('No');
 
             $table->timestamps();
         });

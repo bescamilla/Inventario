@@ -51,6 +51,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "inventario-producto",
   data: function data() {
@@ -231,6 +232,10 @@ var render = function () {
                           },
                         },
                         [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Seleccione opcion"),
+                          ]),
+                          _vm._v(" "),
                           _c("option", { attrs: { value: "Si" } }, [
                             _vm._v("Si"),
                           ]),
@@ -259,7 +264,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h4", [_vm._v("Calificar Producto")]),
+      _c("h4", [_vm._v("Inventario")]),
     ])
   },
   function () {

@@ -17,9 +17,19 @@
             <div class="col-8">
 
 
-                <div class="row">{{producto.nombre}}</div>
-                <div class="row">{{producto.descripcion}}</div>
-                <div class="row">SKU: {{producto.sku}} - Categoría: {{producto.categoria.categoria}}</div>
+                <div class="row"><h4>{{producto.nombre}}</h4></div>
+                <div class="row"><b>Descripción:</b>
+                    <p>{{producto.descripcion}}</p>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <b>SKU:</b> {{producto.sku}}
+                    </div>
+                    <div class="col-9">
+                        <b>Categoría:</b> {{producto.categoria.categoria}}
+                    </div>
+
+                </div>
                 <div class="row">
                     <div class="col-1" v-for="n in 5">
                         <i class="fa fa-star checked" v-if="n <= producto.evaluacion"></i>
@@ -27,14 +37,16 @@
                     </div>
                 </div>
 
-                <div class="row" v-if="producto.estado == 'Si'"> Con stock - {{producto.cantidad}} unidades</div>
-                <div class="row" v-else-if="producto.estado == 'No'">Sin stock</div>
+                <div class="row" style="color: green" v-if="producto.estado == 'Si'"> <p>Con stock - {{producto.cantidad}} unidades</p></div>
+                <div class="row" style="color: red" v-else-if="producto.estado == 'No'"><p>Sin stock</p></div>
             </div>
-            <div class="col-2">
-                <div class="row">${{producto.precio}}</div>
+            <div class="col-2" style="border-left: 1px solid #cbcbcb !important;">
+                <div class="row">
+                    <h4 style="color: mediumpurple">${{producto.precio}}</h4>
+                </div>
 
-                <div class="row" v-if="producto.estado == 'Si'">Disponible</div>
-                <div class="row" v-else-if="producto.estado == 'No'">No disponible</div>
+                <div class="row" style="color: green" v-if="producto.estado == 'Si'">Disponible</div>
+                <div class="row" style="color: red" v-else-if="producto.estado == 'No'">No disponible</div>
 
                 <div class="row">
                     <router-link :to='{name:"showProducto",params:{id:producto.id}}' class="btn btn-info"><i

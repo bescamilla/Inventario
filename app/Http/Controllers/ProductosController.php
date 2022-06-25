@@ -18,7 +18,7 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        $productos = Productos::with('categoria')->with('evaluaciones')->take(10)->get();
+        $productos = Productos::with('categoria')->with('evaluaciones')->where('eliminado', 'No')->take(10)->get();
 
         return response()->json($productos);
     }
@@ -57,7 +57,7 @@ class ProductosController extends Controller
      */
     public function show(Productos $productos)
     {
-        return response()->json($productos);
+
     }
 
     /**
@@ -112,7 +112,10 @@ class ProductosController extends Controller
     public function destroy($id)
     {
         $producto = Productos::find($id);
-        $producto->delete();
+
+        $producto->eliminado = 'Si';
+        $producto->save();
+
         return response()->json([
             'message' => 'El producto se elimino correctamente'
         ]);

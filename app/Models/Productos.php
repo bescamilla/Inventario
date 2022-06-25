@@ -17,7 +17,8 @@ class Productos extends Model
         'descripcion',
         'precio',
         'cantidad',
-        'estado'
+        'estado',
+        'eliminado'
     ];
 
     public function categoria(){

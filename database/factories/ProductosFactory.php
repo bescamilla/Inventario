@@ -21,7 +21,8 @@ class ProductosFactory extends Factory
             'descripcion' => Str::random(20),
             'precio' => $this->faker->randomNumber(3, true),
             'cantidad' => $this->faker->randomNumber(2, true),
-            'estado' => 'Si'
+            'estado' => 'Si',
+            'eliminado' => 'No'
         ];
     }
 }

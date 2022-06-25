@@ -80,6 +80,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "productos",
   data: function data() {
@@ -261,20 +273,29 @@ var render = function () {
           _vm._v(" "),
           _c("div", { staticClass: "col-8" }, [
             _c("div", { staticClass: "row" }, [
-              _vm._v(_vm._s(producto.nombre)),
+              _c("h4", [_vm._v(_vm._s(producto.nombre))]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._v(_vm._s(producto.descripcion)),
+              _c("b", [_vm._v("Descripción:")]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(producto.descripcion))]),
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._v(
-                "SKU: " +
-                  _vm._s(producto.sku) +
-                  " - Categoría: " +
-                  _vm._s(producto.categoria.categoria)
-              ),
+              _c("div", { staticClass: "col-3" }, [
+                _c("b", [_vm._v("SKU:")]),
+                _vm._v(" " + _vm._s(producto.sku) + "\n                "),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-9" }, [
+                _c("b", [_vm._v("Categoría:")]),
+                _vm._v(
+                  " " +
+                    _vm._s(producto.categoria.categoria) +
+                    "\n                "
+                ),
+              ]),
             ]),
             _vm._v(" "),
             _c(
@@ -291,112 +312,145 @@ var render = function () {
             ),
             _vm._v(" "),
             producto.estado == "Si"
-              ? _c("div", { staticClass: "row" }, [
-                  _vm._v(
-                    " Con stock - " + _vm._s(producto.cantidad) + " unidades"
-                  ),
-                ])
+              ? _c(
+                  "div",
+                  { staticClass: "row", staticStyle: { color: "green" } },
+                  [
+                    _c("p", [
+                      _vm._v(
+                        "Con stock - " + _vm._s(producto.cantidad) + " unidades"
+                      ),
+                    ]),
+                  ]
+                )
               : producto.estado == "No"
-              ? _c("div", { staticClass: "row" }, [_vm._v("Sin stock")])
+              ? _c(
+                  "div",
+                  { staticClass: "row", staticStyle: { color: "red" } },
+                  [_c("p", [_vm._v("Sin stock")])]
+                )
               : _vm._e(),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-2" }, [
-            _c("div", { staticClass: "row" }, [
-              _vm._v("$" + _vm._s(producto.precio)),
-            ]),
-            _vm._v(" "),
-            producto.estado == "Si"
-              ? _c("div", { staticClass: "row" }, [_vm._v("Disponible")])
-              : producto.estado == "No"
-              ? _c("div", { staticClass: "row" }, [_vm._v("No disponible")])
-              : _vm._e(),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "row" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "btn btn-info",
-                    attrs: {
-                      to: { name: "showProducto", params: { id: producto.id } },
-                    },
-                  },
-                  [
-                    _c("i", { staticClass: "fas fa-eye" }),
-                    _vm._v(" Mostrar\n                "),
-                  ]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "row" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "btn btn-success",
-                    attrs: {
-                      to: {
-                        name: "editarProducto",
-                        params: { id: producto.id },
-                      },
-                    },
-                  },
-                  [
-                    _c("i", { staticClass: "fas fa-edit" }),
-                    _vm._v(" Editar\n                "),
-                  ]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "row" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "btn btn-success",
-                    attrs: {
-                      to: {
-                        name: "inventarioProducto",
-                        params: { id: producto.id },
-                      },
-                    },
-                  },
-                  [
-                    _c("i", { staticClass: "fas fa-warehouse" }),
-                    _vm._v(" Inventario\n                "),
-                  ]
-                ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            {
+              staticClass: "col-2",
+              staticStyle: { "border-left": "1px solid #cbcbcb !important" },
+            },
+            [
+              _c("div", { staticClass: "row" }, [
+                _c("h4", { staticStyle: { color: "mediumpurple" } }, [
+                  _vm._v("$" + _vm._s(producto.precio)),
+                ]),
+              ]),
+              _vm._v(" "),
+              producto.estado == "Si"
+                ? _c(
+                    "div",
+                    { staticClass: "row", staticStyle: { color: "green" } },
+                    [_vm._v("Disponible")]
+                  )
+                : producto.estado == "No"
+                ? _c(
+                    "div",
+                    { staticClass: "row", staticStyle: { color: "red" } },
+                    [_vm._v("No disponible")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
               _c(
-                "a",
-                {
-                  staticClass: "btn btn-danger",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function ($event) {
-                      return _vm.borrarProducto(producto.id)
+                "div",
+                { staticClass: "row" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-info",
+                      attrs: {
+                        to: {
+                          name: "showProducto",
+                          params: { id: producto.id },
+                        },
+                      },
+                    },
+                    [
+                      _c("i", { staticClass: "fas fa-eye" }),
+                      _vm._v(" Mostrar\n                "),
+                    ]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "row" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-success",
+                      attrs: {
+                        to: {
+                          name: "editarProducto",
+                          params: { id: producto.id },
+                        },
+                      },
+                    },
+                    [
+                      _c("i", { staticClass: "fas fa-edit" }),
+                      _vm._v(" Editar\n                "),
+                    ]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "row" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-success",
+                      attrs: {
+                        to: {
+                          name: "inventarioProducto",
+                          params: { id: producto.id },
+                        },
+                      },
+                    },
+                    [
+                      _c("i", { staticClass: "fas fa-warehouse" }),
+                      _vm._v(" Inventario\n                "),
+                    ]
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-danger",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.borrarProducto(producto.id)
+                      },
                     },
                   },
-                },
-                [_c("i", { staticClass: "fas fa-trash" }), _vm._v(" Eliminar")]
-              ),
-            ]),
-          ]),
+                  [
+                    _c("i", { staticClass: "fas fa-trash" }),
+                    _vm._v(" Eliminar"),
+                  ]
+                ),
+              ]),
+            ]
+          ),
         ])
       }),
     ],

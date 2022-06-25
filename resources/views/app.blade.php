@@ -12,6 +12,7 @@
     <style>
         .row{
             padding: 10px;
+            margin-bottom: 15px;
         }
         .checked {
              color: orange;

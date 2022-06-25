@@ -50,15 +50,6 @@
                                     <input type="text" class="form-control" v-model="producto.cantidad">
                                 </div>
                             </div>
-                            <div class="col-12 mb-2">
-                                <div class="form-group">
-                                    <label>¿Cuenta con inventario?</label>
-                                    <select class="form-control" v-model="producto.estado">
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                </div>
-                            </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>
